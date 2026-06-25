@@ -47,9 +47,14 @@ A responsive frontend web application built with **HTML5**, **CSS3**, and **vani
 
 ```
 web-frontend/
-├── index.html      # Semantic HTML5 structure
-├── style.css       # Mobile-first responsive styles
-├── script.js       # Vanilla JS interactivity
+├── index.html              # Semantic HTML5 structure
+├── css/
+│   ├── style.css           # Mobile-first responsive styles
+│   └── reset.css           # CSS reset / normalization
+├── js/
+│   └── script.js           # Vanilla JS interactivity
+├── assets/
+│   └── images/             # Project images and icons
 └── README.MD
 ```
 

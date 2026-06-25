@@ -1,11 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DecodeLabs Project 1 — A responsive frontend web application built with HTML5, CSS3, and vanilla JavaScript. Mobile-first design with 2025 UI/UX aesthetics.">
+  <title>DecodeLabs — Responsive Frontend Interface</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+
+  <!-- Skip navigation — Accessibility -->
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
+  <div class="page-wrapper">
+
+    <!-- ============================================
+         HEADER — Branding & Wayfinding
+         ============================================ -->
+    <header class="site-header" role="banner">
+      <div class="container">
+
+        <!-- Logo / Brand -->
+        <a href="#" class="site-logo" aria-label="DecodeLabs Home">
+          DecodeLabs
+        </a>
+
+        <!-- Hamburger Toggle — Mobile -->
+        <button
+          id="nav-toggle"
+          class="nav-toggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <!-- Primary Navigation -->
+        <nav id="main-nav" class="main-nav" aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- ============================================
+         MAIN — Core Narrative
+         ============================================ -->
+    <main id="main-content" class="site-main">
+
+      <!-- Hero Section -->
+      <section id="hero" class="hero container">
+        <h1>Building the Future of Web Experiences</h1>
+        <p>
+          A responsive, accessible, and beautifully crafted frontend interface — 
+          built with pure HTML5, CSS3, and JavaScript. No frameworks. Just fundamentals.
+        </p>
+        <a href="#about" class="cta-button">Learn More</a>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="section container">
+        <div class="section-title">
+          <span class="section-subtitle">Who We Are</span>
+          <h2>About DecodeLabs</h2>
+        </div>
+        <article class="card">
+          <h3>Our Mission</h3>
+          <p>
+            DecodeLabs is an industrial training program that transforms aspiring developers
+            into full-stack professionals through hands-on, project-driven learning. 
+            We believe in mastering fundamentals before frameworks — building competence 
+            from the ground up.
+          </p>
+        </article>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="section container">
+        <div class="section-title">
+          <span class="section-subtitle">What We Offer</span>
+          <h2>Core Services</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Responsive Design</h3>
+            <p>
+              Mobile-first layouts that adapt fluidly across every screen size, 
+              from 320px phones to ultrawide monitors.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Semantic Engineering</h3>
+            <p>
+              Accessible, SEO-optimized HTML5 structures with proper landmark 
+              elements and ARIA compliance.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Modern Aesthetics</h3>
+            <p>
+              2025 UI/UX design principles — warm color palettes, clean typography, 
+              and purposeful visual hierarchy.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <section id="portfolio" class="section container">
+        <div class="section-title">
+          <span class="section-subtitle">Our Work</span>
+          <h2>Featured Projects</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Project Alpha</h3>
+            <p>
+              A fully responsive landing page demonstrating CSS Grid, Flexbox, 
+              and fluid typography with the 2025 design palette.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Project Beta</h3>
+            <p>
+              Interactive dashboard interface with mobile navigation, 
+              keyboard accessibility, and WCAG AA compliance.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Project Gamma</h3>
+            <p>
+              Multi-page web application with semantic HTML5 structure, 
+              optimized for LCP and CLS performance metrics.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section container">
+        <div class="section-title">
+          <span class="section-subtitle">Get in Touch</span>
+          <h2>Contact Us</h2>
+        </div>
+        <article class="card text-center">
+          <h3>Ready to Start Your Journey?</h3>
+          <p>
+            Reach out to DecodeLabs and begin building your full-stack development career.
+          </p>
+          <p>
+            <a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a>
+          </p>
+          <p>Greater Lucknow, India</p>
+        </article>
+      </section>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER — Terminal Metadata
+         ============================================ -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-content">
+
+          <div class="footer-section">
+            <h3>DecodeLabs</h3>
+            <p>Full Stack Development<br>Industrial Training Program</p>
+          </div>
+
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <p>
+              <a href="#about">About</a> · 
+              <a href="#services">Services</a> · 
+              <a href="#portfolio">Portfolio</a> · 
+              <a href="#contact">Contact</a>
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <p><a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a></p>
+            <p>Greater Lucknow, India</p>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; <span id="current-year"></span> DecodeLabs. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/script.js"></script>
 </body>
 </html>
