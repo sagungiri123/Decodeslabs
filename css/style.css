@@ -1,435 +1,151 @@
-/* ============================================
-   DecodeLabs — Project 1
-   Mobile-First Responsive Styles
-   ============================================
-   
-   Design System:
-   - Palette: Mocha Mousse, Ethereal Blue, Moonlit Grey
-   - Fonts: Montserrat (headings), Roboto (body)
-   - Breakpoints: 768px (tablet), 1024px (desktop)
-   - Layout: CSS Grid (macro) + Flexbox (micro)
-   ============================================ */
+@import url('tokens.css');
+@import url('sidebar.css');
+@import url('chat.css');
+@import url('responsive.css');
 
-/* ── Google Fonts Import ── */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500&display=swap');
-
-/* ── Design Tokens (Custom Properties) ── */
-:root {
-  /* Colors — 2025 Palette */
-  --color-primary: #A5856E;         /* Mocha Mousse — stability */
-  --color-secondary: #A0D4E0;       /* Ethereal Blue — trust */
-  --color-background: #F2F0EA;      /* Moonlit Grey — refinement */
-  --color-text: #2C2C2C;            /* Dark neutral for body text */
-  --color-text-light: #6B6B6B;      /* Muted text */
-  --color-white: #FFFFFF;
-  --color-primary-dark: #8A6D58;    /* Darker shade for hover/active */
-  --color-secondary-dark: #7BBFCE;  /* Darker shade for hover/active */
-  --color-border: #D9D5CC;          /* Subtle border */
-
-  /* Typography */
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'Roboto', sans-serif;
-
-  /* Font Sizes — Fluid (clamp) */
-  --fs-h1: clamp(1.75rem, 4vw + 0.5rem, 2.75rem);
-  --fs-h2: clamp(1.375rem, 3vw + 0.25rem, 2rem);
-  --fs-h3: clamp(1.125rem, 2vw + 0.25rem, 1.5rem);
-  --fs-body: clamp(0.9375rem, 1vw + 0.5rem, 1.0625rem);
-  --fs-small: clamp(0.8125rem, 0.8vw + 0.4rem, 0.875rem);
-
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-
-  /* Layout */
-  --max-width: 1080px;
-  --gutter: 1.25rem;
-  --nav-height: 60px;
-
-  /* Borders */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 400ms ease;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-/* ============================================
-   BASE STYLES (Mobile-First)
-   ============================================ */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
 body {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  font-weight: 400;
-  color: var(--color-text);
-  background-color: var(--color-background);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    color: var(--text-primary);
+    background: var(--bg-app);
+    -webkit-font-smoothing: antialiased;
+    transition: background var(--duration-base) var(--ease-standard),
+        color var(--duration-base) var(--ease-standard);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--color-text);
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
-
-h1 { font-size: var(--fs-h1); }
-h2 { font-size: var(--fs-h2); }
-h3 { font-size: var(--fs-h3); }
 
 p {
-  margin-block-end: var(--space-md);
-  color: var(--color-text-light);
+    margin: 0;
 }
 
-a {
-  color: var(--color-primary);
-  transition: color var(--transition-fast);
-}
-
-a:hover,
-a:focus {
-  color: var(--color-primary-dark);
-}
-
-/* ============================================
-   LAYOUT — Page Grid (Mobile: Single Column)
-   ============================================ */
-
-.page-wrapper {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-}
-
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-
-/* ============================================
-   HEADER & NAVIGATION
-   ============================================ */
-
-/* Header — branding and wayfinding */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: var(--color-white);
-  border-block-end: 1px solid var(--color-border);
-}
-
-.site-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--nav-height);
-}
-
-.site-logo {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-/* Hamburger menu — mobile only */
-.nav-toggle {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: var(--space-xs);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.nav-toggle .bar {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: var(--color-text);
-  border-radius: 2px;
-  transition: transform var(--transition-base), opacity var(--transition-base);
-}
-
-/* Hamburger animation — open state */
-.nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.nav-toggle[aria-expanded="true"] .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* Navigation — mobile: full-width dropdown */
-.main-nav {
-  display: none;
-  position: absolute;
-  top: var(--nav-height);
-  left: 0;
-  right: 0;
-  background-color: var(--color-white);
-  border-block-end: 1px solid var(--color-border);
-  padding: var(--space-md);
-}
-
-.main-nav.is-open {
-  display: block;
-}
-
-.nav-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.nav-list a {
-  display: block;
-  padding: var(--space-sm) var(--space-md);
-  font-family: var(--font-heading);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--color-text);
-  border-radius: var(--radius-sm);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
-}
-
-.nav-list a:hover,
-.nav-list a:focus,
-.nav-list a.active {
-  background-color: var(--color-background);
-  color: var(--color-primary);
-}
-
-/* ============================================
-   MAIN CONTENT
-   ============================================ */
-
-/* Main — core narrative area */
-.site-main {
-  padding-block: var(--space-2xl);
-}
-
-/* Hero section */
-.hero {
-  text-align: center;
-  padding-block: var(--space-2xl);
-}
-
-.hero h1 {
-  margin-block-end: var(--space-md);
-}
-
-.hero p {
-  max-width: 600px;
-  margin-inline: auto;
-  font-size: var(--fs-body);
-}
-
-.hero .cta-button {
-  display: inline-block;
-  margin-block-start: var(--space-lg);
-  padding: var(--space-sm) var(--space-xl);
-  font-family: var(--font-heading);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  border-radius: var(--radius-md);
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
-}
-
-.hero .cta-button:hover,
-.hero .cta-button:focus {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-1px);
-}
-
-/* Section — reusable content block */
-.section {
-  padding-block: var(--space-2xl);
-}
-
-.section-title {
-  margin-block-end: var(--space-lg);
-  text-align: center;
-}
-
-.section-subtitle {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--color-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-block-end: var(--space-xs);
-}
-
-/* ============================================
-   CARDS — Article / Content Units
-   ============================================ */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-}
-
-.card {
-  background-color: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  transform: translateY(-2px);
-}
-
-.card h3 {
-  margin-block-end: var(--space-sm);
-}
-
-.card p {
-  font-size: var(--fs-small);
-}
-
-/* ============================================
-   FOOTER — Terminal Metadata
-   ============================================ */
-
-.site-footer {
-  background-color: var(--color-text);
-  color: var(--color-background);
-  padding-block: var(--space-2xl);
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.footer-section h3 {
-  font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--color-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-block-end: var(--space-sm);
-}
-
-.footer-section p,
-.footer-section a {
-  font-size: var(--fs-small);
-  color: var(--color-border);
-}
-
-.footer-section a:hover {
-  color: var(--color-secondary);
-}
-
-.footer-bottom {
-  margin-block-start: var(--space-xl);
-  padding-block-start: var(--space-lg);
-  border-block-start: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: var(--fs-small);
-  color: var(--color-text-light);
-  text-align: center;
-}
-
-/* ============================================
-   UTILITY CLASSES
-   ============================================ */
-
-.text-center { text-align: center; }
-.text-primary { color: var(--color-primary); }
-.text-secondary { color: var(--color-secondary); }
-.bg-white { background-color: var(--color-white); }
-.bg-light { background-color: var(--color-background); }
-
-/* ============================================
-   TABLET BREAKPOINT — min-width: 768px
-   ============================================ */
-
-@media (min-width: 768px) {
-  :root {
-    --gutter: 2rem;
-  }
-
-  /* Navigation — horizontal row */
-  .nav-toggle {
-    display: none;
-  }
-
-  .main-nav {
-    display: block;
-    position: static;
+button {
+    font-family: inherit;
+    cursor: pointer;
     border: none;
-    padding: 0;
-  }
-
-  .nav-list {
-    flex-direction: row;
-    gap: var(--space-xs);
-  }
-
-  /* Hero — more breathing room */
-  .hero {
-    padding-block: var(--space-3xl);
-  }
-
-  /* Cards — two columns */
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Footer — horizontal layout */
-  .footer-content {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+    background: none;
+    color: inherit;
 }
 
-/* ============================================
-   DESKTOP BREAKPOINT — min-width: 1024px
-   ============================================ */
+textarea,
+input {
+    font-family: inherit;
+    color: inherit;
+}
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ---- Focus visibility (accessibility mandate) ---- */
+:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+button:focus-visible,
+.icon-btn:focus-visible {
+    outline-offset: 3px;
+}
+
+
+.app-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: var(--topbar-height) 1fr auto;
+    min-height: 0;
+    background: var(--bg-app);
+}
+
+/* ---- Drawer overlay (mobile sidebar backdrop) ---- */
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: var(--z-overlay);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.drawer-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ---- Icon button base ---- */
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.icon-btn:hover {
+    background: var(--bg-hover);
+}
+
+/* ---- Tablet and up: sidebar becomes a permanent column ---- */
+@media (min-width: 768px) {
+    .app-shell {
+        grid-template-columns: var(--sidebar-width) 1fr;
+    }
+
+    .drawer-toggle {
+        display: none;
+    }
+
+    .drawer-overlay {
+        display: none;
+    }
+}
+
+/* ---- Desktop: slightly wider sidebar breathing room ---- */
 @media (min-width: 1024px) {
-  :root {
-    --gutter: 2.5rem;
-  }
-
-  /* Cards — three columns on desktop */
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Hero — maximum breathing room */
-  .hero {
-    padding-block: calc(var(--space-3xl) * 1.5);
-  }
-
-  /* Navigation links — slightly larger touch targets */
-  .nav-list a {
-    padding: var(--space-xs) var(--space-md);
-  }
+    .app-shell {
+        grid-template-columns: 300px 1fr;
+    }
 }

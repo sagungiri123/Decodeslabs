@@ -1,213 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DecodeLabs Project 1 — A responsive frontend web application built with HTML5, CSS3, and vanilla JavaScript. Mobile-first design with 2025 UI/UX aesthetics.">
-  <title>DecodeLabs — Responsive Frontend Interface</title>
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/reset.css">
+  <title>Conversation — Responsive Chat Interface</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  <!-- Skip navigation — Accessibility -->
-  <a href="#main-content" class="sr-only">Skip to main content</a>
+  <button class="drawer-overlay" id="drawerOverlay" aria-hidden="true" tabindex="-1"></button>
 
-  <div class="page-wrapper">
+  <div class="app-shell">
 
-    <!-- ============================================
-         HEADER — Branding & Wayfinding
-         ============================================ -->
-    <header class="site-header" role="banner">
-      <div class="container">
-
-        <!-- Logo / Brand -->
-        <a href="#" class="site-logo" aria-label="DecodeLabs Home">
-          DecodeLabs
-        </a>
-
-        <!-- Hamburger Toggle — Mobile -->
-        <button
-          id="nav-toggle"
-          class="nav-toggle"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="main-nav"
-        >
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Conversation history">
+      <div class="sidebar__top">
+        <button class="btn-new-chat" id="newChatBtn">
+          <span class="btn-new-chat__brand-icon" aria-hidden="true">
+            <img src="assets/icons/chat-icon.png" alt="">
+          </span>
+          New conversation
         </button>
-
-        <!-- Primary Navigation -->
-        <nav id="main-nav" class="main-nav" aria-label="Primary navigation">
-          <ul class="nav-list">
-            <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-
       </div>
-    </header>
 
-    <!-- ============================================
-         MAIN — Core Narrative
-         ============================================ -->
-    <main id="main-content" class="site-main">
+      <form class="sidebar__search" role="search">
+        <label for="searchChats" class="visually-hidden">Search conversations</label>
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4" />
+          <path d="M11.5 11.5L15 15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <input type="search" id="searchChats" placeholder="Search conversations" autocomplete="off">
+      </form>
 
-      <!-- Hero Section -->
-      <section id="hero" class="hero container">
-        <h1>Building the Future of Web Experiences</h1>
-        <p>
-          A responsive, accessible, and beautifully crafted frontend interface — 
-          built with pure HTML5, CSS3, and JavaScript. No frameworks. Just fundamentals.
-        </p>
-        <a href="#about" class="cta-button">Learn More</a>
-      </section>
+      <nav class="sidebar__history" aria-label="Conversation list">
+        <p class="sidebar__section-label">Recent</p>
+        <ul class="chat-list" id="chatList"><!-- conversation items injected by sidebar.js --></ul>
+      </nav>
 
-      <!-- About Section -->
-      <section id="about" class="section container">
-        <div class="section-title">
-          <span class="section-subtitle">Who We Are</span>
-          <h2>About DecodeLabs</h2>
-        </div>
-        <article class="card">
-          <h3>Our Mission</h3>
-          <p>
-            DecodeLabs is an industrial training program that transforms aspiring developers
-            into full-stack professionals through hands-on, project-driven learning. 
-            We believe in mastering fundamentals before frameworks — building competence 
-            from the ground up.
-          </p>
-        </article>
-      </section>
-
-      <!-- Services Section -->
-      <section id="services" class="section container">
-        <div class="section-title">
-          <span class="section-subtitle">What We Offer</span>
-          <h2>Core Services</h2>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Responsive Design</h3>
-            <p>
-              Mobile-first layouts that adapt fluidly across every screen size, 
-              from 320px phones to ultrawide monitors.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Semantic Engineering</h3>
-            <p>
-              Accessible, SEO-optimized HTML5 structures with proper landmark 
-              elements and ARIA compliance.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Modern Aesthetics</h3>
-            <p>
-              2025 UI/UX design principles — warm color palettes, clean typography, 
-              and purposeful visual hierarchy.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- Portfolio Section -->
-      <section id="portfolio" class="section container">
-        <div class="section-title">
-          <span class="section-subtitle">Our Work</span>
-          <h2>Featured Projects</h2>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Project Alpha</h3>
-            <p>
-              A fully responsive landing page demonstrating CSS Grid, Flexbox, 
-              and fluid typography with the 2025 design palette.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Project Beta</h3>
-            <p>
-              Interactive dashboard interface with mobile navigation, 
-              keyboard accessibility, and WCAG AA compliance.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Project Gamma</h3>
-            <p>
-              Multi-page web application with semantic HTML5 structure, 
-              optimized for LCP and CLS performance metrics.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="section container">
-        <div class="section-title">
-          <span class="section-subtitle">Get in Touch</span>
-          <h2>Contact Us</h2>
-        </div>
-        <article class="card text-center">
-          <h3>Ready to Start Your Journey?</h3>
-          <p>
-            Reach out to DecodeLabs and begin building your full-stack development career.
-          </p>
-          <p>
-            <a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a>
-          </p>
-          <p>Greater Lucknow, India</p>
-        </article>
-      </section>
-
-    </main>
-
-    <!-- ============================================
-         FOOTER — Terminal Metadata
-         ============================================ -->
-    <footer class="site-footer" role="contentinfo">
-      <div class="container">
-        <div class="footer-content">
-
-          <div class="footer-section">
-            <h3>DecodeLabs</h3>
-            <p>Full Stack Development<br>Industrial Training Program</p>
-          </div>
-
-          <div class="footer-section">
-            <h3>Quick Links</h3>
-            <p>
-              <a href="#about">About</a> · 
-              <a href="#services">Services</a> · 
-              <a href="#portfolio">Portfolio</a> · 
-              <a href="#contact">Contact</a>
-            </p>
-          </div>
-
-          <div class="footer-section">
-            <h3>Connect</h3>
-            <p><a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a></p>
-            <p>Greater Lucknow, India</p>
-          </div>
-
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; <span id="current-year"></span> DecodeLabs. All rights reserved.</p>
-        </div>
+      <div class="sidebar__bottom">
+        <button class="theme-toggle" id="themeToggle" aria-pressed="false">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.5 9.5A6 6 0 1 1 6.5 2.5 5 5 0 0 0 13.5 9.5Z" stroke="currentColor" stroke-width="1.3"
+              stroke-linejoin="round" />
+          </svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.3" />
+            <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6L13 13M13 3l-1.4 1.4M4.4 11.6L3 13"
+              stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+          </svg>
+          <span id="themeLabel">Dark mode</span>
+        </button>
       </div>
-    </footer>
+    </aside>
 
+    <!-- MAIN -->
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn drawer-toggle" id="drawerToggle" aria-label="Open conversation list"
+          aria-expanded="false" aria-controls="sidebar">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="topbar__brand-icon" aria-hidden="true">
+          <img src="assets/icons/chat-icon.png" alt="">
+        </div>
+        <h1 class="topbar__title" id="activeChatTitle">New conversation</h1>
+        <div class="topbar__spacer" aria-hidden="true"></div>
+      </header>
+
+      <main class="chat-main" id="chatMain">
+        <section class="empty-state" id="emptyState" aria-live="polite">
+          <div class="empty-state__mark" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M6 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H16l-7 6v-6h-.5A4 4 0 0 1 6 24V10Z"
+                stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h2>Start a conversation</h2>
+          <p>Type a message below to begin. Your conversations are saved to this browser automatically.</p>
+        </section>
+
+        <div class="message-list" id="messageList" role="log" aria-live="polite" aria-label="Messages" hidden></div>
+
+        <div class="typing-indicator" id="typingIndicator" hidden aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </main>
+
+      <footer class="composer">
+        <form class="composer__form" id="composerForm">
+          <label for="messageInput" class="visually-hidden">Message</label>
+          <textarea id="messageInput" class="composer__input" placeholder="Send a message…" rows="1"
+            maxlength="4000"></textarea>
+          <button type="submit" class="composer__send" id="sendBtn" aria-label="Send message" disabled>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M2 16l14-7L2 2v5.5L11 9l-9 1.5V16Z" fill="currentColor" />
+            </svg>
+          </button>
+        </form>
+        <p class="composer__hint">Enter to send · Shift + Enter for a new line</p>
+      </footer>
+    </div>
   </div>
 
-  <!-- JavaScript -->
-  <script src="js/script.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/app.js"></script>
 </body>
+
 </html>

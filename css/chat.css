@@ -1,0 +1,257 @@
+/* ---- Topbar ---- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-app);
+  min-height: 0;
+}
+
+.topbar__brand-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--bg-panel);
+}
+
+.topbar__brand-icon img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  object-fit: contain;
+}
+
+.topbar__title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar__spacer { flex: 1; }
+
+/* ---- Chat main area ---- */
+.chat-main {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: var(--space-4);
+}
+
+/* ---- Empty state ---- */
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  margin: auto;
+  max-width: 380px;
+}
+.empty-state[hidden] {
+  display: none;
+}
+
+.empty-state__mark {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--bg-hover);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state h2 {
+  font-size: var(--fs-lg);
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+/* ---- Message list ---- */
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: var(--composer-max-width);
+  margin: 0 auto;
+}
+.message-list[hidden] {
+  display: none;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: min(78%, 560px);
+  animation: messageIn var(--duration-slow) var(--ease-standard);
+}
+
+@keyframes messageIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message__bubble {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.message__meta {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+  padding: 0 var(--space-1);
+}
+
+/* Signature detail: sender and receiver bubbles mirror each other's
+   corner treatment — one sharp inner corner pointing toward its
+   sender, instead of a uniform rounded-rect on both sides. */
+.message--user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.message--user .message__bubble {
+  background: var(--bg-bubble-user);
+  color: var(--text-on-accent);
+  border-radius: var(--radius-bubble) var(--radius-bubble) var(--space-1) var(--radius-bubble);
+}
+
+.message--bot {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+.message--bot .message__bubble {
+  background: var(--bg-bubble-bot);
+  color: var(--text-bubble-bot);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-bubble) var(--radius-bubble) var(--radius-bubble) var(--space-1);
+}
+
+/* ---- Typing indicator ---- */
+.typing-indicator {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  width: fit-content;
+  max-width: var(--composer-max-width);
+  margin: var(--space-2) auto 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-bubble-bot);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-bubble) var(--radius-bubble) var(--radius-bubble) var(--space-1);
+}
+.typing-indicator[hidden] {
+  display: none;
+}
+.typing-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  animation: typingBounce 1.2s infinite ease-in-out;
+}
+.typing-indicator span:nth-child(2) { animation-delay: 0.15s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ---- Composer ---- */
+.composer {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-app);
+}
+
+.composer__form {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  max-width: var(--composer-max-width);
+  margin: 0 auto;
+  padding: var(--space-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+.composer__form:focus-within {
+  border-color: var(--accent);
+}
+
+.composer__input {
+  flex: 1;
+  border: none;
+  background: none;
+  resize: none;
+  max-height: 200px;
+  padding: var(--space-2) var(--space-2);
+  font-size: var(--fs-base);
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+.composer__input:focus { outline: none; }
+.composer__input::placeholder { color: var(--text-secondary); }
+
+.composer__send {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--text-on-accent);
+  transition: background var(--duration-fast) var(--ease-standard),
+              opacity var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+.composer__send:hover:not(:disabled) { background: var(--accent-hover); }
+.composer__send:active:not(:disabled) { transform: scale(0.94); }
+.composer__send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.composer__hint {
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  margin-top: var(--space-2);
+}
+
+/* ---- Tablet+ : roomier message width, hide hint less aggressively ---- */
+@media (min-width: 768px) {
+  .chat-main { padding: var(--space-6) var(--space-6) var(--space-4); }
+  .composer { padding: var(--space-4) var(--space-6) var(--space-6); }
+}
+
+/* ---- Desktop+ : cap content width so ultrawide doesn't stretch lines ---- */
+@media (min-width: 1440px) {
+  .message-list,
+  .composer__form,
+  .typing-indicator {
+    max-width: 820px;
+  }
+}
